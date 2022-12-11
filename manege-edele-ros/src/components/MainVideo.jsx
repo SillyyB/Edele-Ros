@@ -1,11 +1,29 @@
 import React from "react";
 import video from "../assets/pexels-video.mp4";
 import Logo from "../components/Logo";
+import axios from "axios";
+import { useState } from "react";
 
 const MainVideo = () => {
+  const [posts, setPosts] = useState("");
+
+  const getId = () => {
+    axios
+      .get("http://localhost:3000/clients")
+      // .get("https://api.quotable.io/random")
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        setPosts(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="">
-      <video classname="h-screen" src={video} autoPlay muted loop />
+      <video className="h-screen w-screen" src={video} autoPlay muted loop />
 
       <div className="absolute top-0 w-full h-full bg-black/60">
         {/* logo */}
@@ -26,6 +44,16 @@ const MainVideo = () => {
             </button>
           </div>
         </div>
+      </div>
+      <button onClick={getId}>get user info</button>
+      <div>
+        {posts.map((post) => {
+          return (
+            <div key={post.id}>
+              <p>{post.name}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
