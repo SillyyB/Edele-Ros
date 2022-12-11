@@ -2,19 +2,31 @@ import React from "react";
 import video from "../assets/pexels-video.mp4";
 import Logo from "../components/Logo";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MainVideo = () => {
-  const [posts, setPosts] = useState("");
+  const [products, setProducts] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/clients")
+      // .get("https://api.quotable.io/random")
+      .then((res) => {
+        setProducts(res.data);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 
   const getId = () => {
     axios
       .get("http://localhost:3000/clients")
       // .get("https://api.quotable.io/random")
       .then((res) => {
-        const data = res.data;
-        console.log(data);
-        setPosts(data);
+        setProducts(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -47,12 +59,8 @@ const MainVideo = () => {
       </div>
       <button onClick={getId}>get user info</button>
       <div>
-        {posts.map((post) => {
-          return (
-            <div key={post.id}>
-              <p>{post.name}</p>
-            </div>
-          );
+        {products.map((product) => {
+          return <p key={product.id}>{product.name}</p>;
         })}
       </div>
     </div>
