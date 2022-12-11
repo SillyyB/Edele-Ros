@@ -1,10 +1,9 @@
-import logo from "./logo.svg";
-import "./App.css";
+import MainVideo from "./components/MainVideo";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-4xl font-bold underline">Hello world!</h1>
+    <div className="">
+      <MainVideo className="" />
     </div>
   );
 }
