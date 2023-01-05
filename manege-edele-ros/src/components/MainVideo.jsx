@@ -20,18 +20,18 @@ const MainVideo = () => {
       });
   });
 
-  // const getId = () => {
-  //   axios
-  //     .get("http://localhost:3000/clients")
-  //     // .get("https://api.quotable.io/random")
-  //     .then((res) => {
-  //       setProducts(res.data);
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const getId = () => {
+    axios
+      .get("http://localhost:3000/clients")
+      // .get("https://api.quotable.io/random")
+      .then((res) => {
+        setProducts(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="">
@@ -57,13 +57,13 @@ const MainVideo = () => {
           </div>
         </div>
       </div>
-      {/* <button onClick={getId}>get user info</button> */}
+      <button onClick={getId}>get user info</button>
       {/* <div>
         {products.map((product) => {
           return <p key={product.id}>{product.name}</p>;
         })}
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         {products.map((product) => {
           return <p key={product.id}>{product.address}</p>;
         })}
