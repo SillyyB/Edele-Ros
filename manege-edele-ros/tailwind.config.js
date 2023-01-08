@@ -6,6 +6,11 @@ module.exports = {
       fontFamily: {
         cormorant: ["Cormorant Garamond"],
       },
+      colors: {
+        primary: "#6C5D5D",
+        backgr: "#d9d9d9",
+        sec_backgr: "#c9c9c9",
+      },
     },
   },
   plugins: [],
