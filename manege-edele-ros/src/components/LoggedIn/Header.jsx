@@ -13,9 +13,7 @@ const Header = () => {
     setOpen(!open);
   };
 
-  const handleMenu1 = () => {
-    setOpen(<Profile />);
-  };
+
 
   return (
     isAuthenticated && (
