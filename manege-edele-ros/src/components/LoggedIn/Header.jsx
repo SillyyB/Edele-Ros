@@ -25,7 +25,11 @@ const Header = () => {
             <div className="absolute -top-4">
               <div className="flex items-center bg-sec_backgr rounded">
                 <p className="pl-3 tracking-wide">{user.given_name}</p>
-                <img src={user.picture} className="rounded-full w-10 h-10 " />
+                <img
+                  alt="profile_picture"
+                  src={user.picture}
+                  className="rounded-full w-10 h-10 "
+                />
                 <AiFillCaretDown className="ml-4" />
               </div>
               <div className="bg-sec_backgr rounded">
