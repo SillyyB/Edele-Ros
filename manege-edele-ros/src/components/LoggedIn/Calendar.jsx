@@ -9,13 +9,28 @@ const Calendar = () => {
     },
   ]);
 
-  const handleClick = () => {};
+  const [myLessons, setMyLessons] = useState([
+    {
+      id: 2,
+      name: "springen",
+      teacher: "Plooi",
+    },
+  ]);
+
+  const handle = () => {};
+
+  const handleClick = () => {
+    const newArray = structuredClone(availableLessons);
+    const updateLessons = [...myLessons, newArray];
+    setMyLessons(updateLessons);
+  };
+
   return (
-    <div className="mt-20">
+    <div className="py-20">
       {/* title */}
-      <div className="">
+      <div className="py-20 ">
         <h2 className="text-3xl uppercase mb-2">Available lessons</h2>
-        <p>
+        <p className="text-zinc-600">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero
           consectetur saepe dolore.
         </p>
@@ -23,17 +38,23 @@ const Calendar = () => {
 
       {/* upcoming lessons */}
       <ul>
-        {/* map over the users array */}
         {availableLessons.map((lesson) => (
-          // display a <div> element with the user.name and user.type
-          // parent element needs to have a unique key
           <div key={lesson.id}>
             <p>{lesson.name}</p>
             <p>{lesson.teacher}</p>
           </div>
         ))}
       </ul>
-      <button onClick="">Doe mee aan deze les</button>
+      <button onClick={handleClick}>Doe mee aan deze les</button>
+
+      <ul>
+        {myLessons.map((lesson) => {
+          <div key={lesson.id}>
+            <p>{lesson.name}</p>
+            <p>{lesson.teacher}</p>
+          </div>;
+        })}
+      </ul>
     </div>
   );
 };
