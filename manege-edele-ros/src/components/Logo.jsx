@@ -4,13 +4,13 @@ import { FaHorseHead } from "react-icons/fa";
 const Logo = () => {
   return (
     <div className="flex justify-center font-cormorant items-center">
-      <FaHorseHead className="text-primary text-5xl pr-2 pt-2" />
-      <div className="flex-flex-col pt-8">
-        <h1 className="text-primary text-6xl font-bold tracking-wider">
+      <FaHorseHead className="text-primary text-5xl pr-2" />
+      <div className="flex-flex-col">
+        <h1 className="text-primary text-4xl font-bold tracking-wide">
           Edele Ros
         </h1>
 
-        <p className="text-primary text-2xl font-bold pl-44 -mt-3">Manege</p>
+        <p className="text-primary text-lg font-bold pl-[90px] -mt-3">Manege</p>
       </div>
     </div>
   );

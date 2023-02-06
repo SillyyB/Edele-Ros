@@ -13,10 +13,10 @@ import Calendar from "./components/LoggedIn/Calendar";
 function App() {
   const { isLoading, error } = useAuth0();
   return (
-    <main className="bg-backgr px-4 lg:px-96 font-cormorant font-bold">
-      <Link to="home">
+    <main className="bg-gray-100 font-cormorant font-bold ">
+      {/* <Link to="home">
         <Logo />
-      </Link>
+      </Link> */}
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>loading...</p>}
       {!error && !isLoading && (
