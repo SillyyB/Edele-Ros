@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         cormorant: ["Cormorant Garamond"],
+        sourceSansPro: ["Source Sans Pro"],
       },
       colors: {
         primary: "#6C5D5D",

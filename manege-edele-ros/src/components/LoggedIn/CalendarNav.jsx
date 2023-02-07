@@ -1,17 +1,13 @@
 import React from "react";
+import {BsThreeDotsVertical} from "react-icons/bs"
 
 const CalendarNav = () => {
   return (
-    <div className="border-b-[1.5px] border-t-[1.5px] border-gray-300 bg-gray-200 px-28 font-sans font-medium">
-      <ul className="flex items-center space-x-12">
-        <li className=" py-4">
-          <p className="tracking-wide">Geplande lessen</p>
-        </li>
-        <li>
-          <p>Nieuwe lessen</p>
-        </li>
-        <li>Uw lessen</li>
-      </ul>
+    <div className="border-b-[1.5px] border-gray-300 bg-gray-200 px-28 font-sourceSansPro font-light text-gray-600 py-3">
+      <div className="flex items-center justify-end space-x-4">
+        <p className="font-bold text-gray-500 tracking-wide">Beschikbare lessen</p>
+        <BsThreeDotsVertical className="text-xl"/>
+      </div>
     </div>
   );
 };

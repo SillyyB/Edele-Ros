@@ -13,8 +13,18 @@ const Calendar = () => {
 
   // state with array of objects
   const [availableLessons, setAvailableLessons] = useState([
-    { name: "Gallopperen", date: "06/02/2023", teacher: "Plooien" },
-    { name: "Springen", date: "06/02/2023", teacher: "van Riet" },
+    {
+      name: "Gallopperen",
+      date: "06.02.2023",
+      time: "12:00 - 13:30",
+      teacher: "van Hop",
+    },
+    {
+      name: "Springen",
+      date: "08.03.2023",
+      time: "10:00 - 11:30",
+      teacher: "Rieter",
+    },
   ]);
 
   // handle button click functions
@@ -33,31 +43,53 @@ const Calendar = () => {
     <div className="">
       <CalendarNav />
 
-      <div className="">
-        <table className="w-full table-auto font-sans font-normal ml-24">
+      <div>
+        <table className="w-full table-auto font-sourceSansPro font-normal">
           <thead className="">
-            <tr className="text-md border-b  uppercase  tracking-tight text-gray-600">
-              <th className="w-1/3 p-4" align="start">
+            <tr className="text-md border-b  uppercase  tracking-wide text-gray-600">
+              <th className="w-1/6 px-4 py-5 pl-28" align="center">
                 Datum & tijd
               </th>
-              <th className="w-1/3 p-4" align="start">
+              <th className="w-1/6 p-4 font-sourceSansPro" align="center">
                 Instructeur
               </th>
-              <th className="w-1/3 p-4" align="start">
+              <th className="p-4 pl-12" align="start">
                 Training
               </th>
             </tr>
           </thead>
-          <tbody className="border-b">
-            <tr className="font-medium tracking-tight">
-              <td className="flex flex-col py-2 px-4">
-                <p className="pb-1 text-gray-500">Mo. 06.02.2023</p>
-                <p className="pb-1 text-gray-400">12:00 - 13:30</p>
-              </td>
-              <td className="py-2 px-4">van Hop</td>
-              <td className="py-2 px-4">Springen</td>
-            </tr>
-          </tbody>
+          {availableLessons.map((lesson, index) => (
+            <tbody className="border-b">
+              <tr className="font-medium tracking-tight">
+                <td className="flex flex-col py-1 px-4 pl-28" align="center">
+                  <p className="pb-1 text-gray-500" >
+                    <span className="pr-2">Mo.</span> {lesson.date}
+                  </p>
+                  <p className="text-gray-400 pl-3" align="start">{lesson.time}</p>
+                </td>
+                <td className="py-2 px-4 text-red-600" align="center">
+                  {lesson.teacher}
+                </td>
+                <td className="py-2 px-4 pl-[52px] text-gray-500">
+                  {lesson.name}
+                </td>
+                <td className="py-2 px-4 pl-[52px] text-gray-500">
+                  {" "}
+                  <button
+                    value={index}
+                    onClick={(e) => handleClick(e.target.value)}
+                    className={
+                      isDisabled
+                        ? "rounded bg-red-800 py-1 px-5 font-light text-white"
+                        : "rounded bg-gray-200 py-1 px-5 font-light text-emerald-800"
+                    }
+                  >
+                    Doe mee
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          ))}
         </table>
       </div>
 
@@ -103,52 +135,6 @@ const Calendar = () => {
             ))}
           </ul>
         </div>
-
-        <div className="">
-          <h2 className="mb-2 text-3xl uppercase">Available lessons</h2>
-          <p className="text-zinc-600">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero
-            consectetur saepe dolore.
-          </p>
-        </div>
-        {/* map available lessons */}
-        <ul className="w-2/3">
-          {availableLessons.map((lesson, index) => (
-            <div
-              key={index}
-              className="mb-4 flex flex-col rounded bg-zinc-200 p-4 shadow-lg "
-            >
-              <div className="flex justify-between pb-4">
-                <h1 className="text-2xl tracking-wide">{lesson.name}</h1>
-                <p className="rounded-full border-4 bg-zinc-400  px-2.5 py-2 text-lg tracking-wider text-white">
-                  3/6
-                </p>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center">
-                  <p>
-                    <GiTeacher className="text-3xl" />
-                  </p>
-                  <p className="text-xl text-zinc-500">{lesson.teacher}</p>
-                </div>
-                <p className="text-lg text-zinc-500">{lesson.date}</p>
-              </div>
-              <div className="flex justify-end">
-                <button
-                  value={index}
-                  onClick={(e) => handleClick(e.target.value)}
-                  className={
-                    isDisabled
-                      ? "rounded bg-emerald-900 px-5 py-1 tracking-wider text-gray-500"
-                      : "rounded bg-emerald-700 px-5 py-1 tracking-wider text-white"
-                  }
-                >
-                  {isDisabled ? "Ik doe niet mee" : "Doe mee"}
-                </button>
-              </div>
-            </div>
-          ))}
-        </ul>
 
         {/* create lesson */}
         {/* <div>
