@@ -1,15 +1,10 @@
 {
   "clients": [
     {
-      "id": "1",
-      "isActive": true,
-      "age": 36,
-      "name": "Dunlap",
-      "gender": "male",
-      "company": "CEDWARD",
-      "email": "dunlaphubbard@cedward.com",
-      "phone": "+1 (890) 543-2508",
-      "address": "169 Rutledge Street, Konterra, Northern Mariana Islands, 8551"
+      "name": "Gallopperen",
+      "date": "06.02.2023",
+      "time": "12:00 - 13:30",
+      "teacher": "van Hop"
     },
     {
       "id": "2",

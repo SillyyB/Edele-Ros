@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Lesson from "./Lesson";
 import { GiTeacher } from "react-icons/gi";
 import AvailableLessons from "./AvailableLessons";
 import CalendarNav from "./CalendarNav";
+import axios from "axios";
 
 const Calendar = () => {
   // state
@@ -10,6 +11,7 @@ const Calendar = () => {
   const [isDisabled, setIsDisabled] = useState("");
   const [myLessons, setMyLessons] = useState([]);
   const toggleDisabledButton = () => setIsDisabled(!isDisabled);
+  const [open, setOpen] = useState(false);
 
   // state with array of objects
   const [availableLessons, setAvailableLessons] = useState([
@@ -29,25 +31,38 @@ const Calendar = () => {
 
   // handle button click functions
   const handleClick = (index) => {
+    // join class & show new list with your lessons
     console.dir(availableLessons[index]);
     setMyLessons([...myLessons, availableLessons[index]]);
     toggleDisabledButton(availableLessons[index]);
   };
+
   const handleRemoveLesson = (index) => {
+    // delete lesson from your lessons
     setMyLessons((oldValues) => {
       return oldValues.filter((_, i) => i !== index);
     });
   };
 
+  const [post, setPost] = useState();
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/posts/1").then((res) => {
+      setPost(res.data);
+    });
+  }, []);
+
   return (
     <div className="">
       <CalendarNav />
+
+      <div></div>
 
       <div>
         <table className="w-full table-auto font-sourceSansPro font-normal">
           <thead className="">
             <tr className="text-md border-b  uppercase  tracking-wide text-gray-600">
-              <th className="w-1/6 px-4 py-5 pl-28" align="center">
+              <th className="w-1/6 px-4 py-5 pl-28" align="start">
                 Datum & tijd
               </th>
               <th className="w-1/6 p-4 font-sourceSansPro" align="center">
@@ -62,10 +77,12 @@ const Calendar = () => {
             <tbody className="border-b">
               <tr className="font-medium tracking-tight">
                 <td className="flex flex-col py-1 px-4 pl-28" align="center">
-                  <p className="pb-1 text-gray-500" >
+                  <p className="pb-1 text-gray-500" align="start">
                     <span className="pr-2">Mo.</span> {lesson.date}
                   </p>
-                  <p className="text-gray-400 pl-3" align="start">{lesson.time}</p>
+                  <p className="text-gray-400" align="start">
+                    {lesson.time}
+                  </p>
                 </td>
                 <td className="py-2 px-4 text-red-600" align="center">
                   {lesson.teacher}
@@ -78,11 +95,7 @@ const Calendar = () => {
                   <button
                     value={index}
                     onClick={(e) => handleClick(e.target.value)}
-                    className={
-                      isDisabled
-                        ? "rounded bg-red-800 py-1 px-5 font-light text-white"
-                        : "rounded bg-gray-200 py-1 px-5 font-light text-emerald-800"
-                    }
+                    className="rounded bg-gray-200 py-1 px-5 font-light text-emerald-800"
                   >
                     Doe mee
                   </button>
@@ -96,14 +109,6 @@ const Calendar = () => {
       {/* title */}
       <div className="pt-80 ">
         <div>
-          {/* map your selected lessons */}
-          <div className="mb-20">
-            <h2 className="mb-2 text-3xl uppercase">Uw lessen</h2>
-            <p className="text-zinc-600">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero
-              consectetur saepe dolore.
-            </p>
-          </div>
           {/* lessons map over  */}
           <ul>
             {myLessons.map((lesson, index) => (
