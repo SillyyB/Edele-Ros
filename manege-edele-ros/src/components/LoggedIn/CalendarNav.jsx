@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import AvailableLessons from "./AvailableLessons";
+import CreateNewClass from "./Lessons/CreateNewClass";
 
 const CalendarNav = () => {
   const [open, setOpen] = useState(false);
-  const [isAvailable, setIsAvailable] = useState(true)
+  const [openCreateClass, setOpenCreateClass] = useState(false);
 
   // handle dropdown on Calendar (beschikbare lessen > jou lessen)
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  
+  // handle dropdown on Calendar (beschikbare lessen > jou lessen)
+  const handleOpenCreateClass = () => {
+    setOpenCreateClass(!openCreateClass);
+  };
+
   return (
-    <div className="border-b-[1.5px] border-gray-300 bg-gray-200 px-28 py-3 font-sourceSansPro font-light text-gray-600">
-      <div
-        className="flex cursor-pointer items-center justify-end space-x-4"
-        onClick={handleOpen}
-      >
-        <p className="font-bold tracking-wide text-gray-500">
-          Beschikbare lessen
-        </p>
-        <BsThreeDotsVertical className="text-xl" />
+    <div className="flex border-b-[1.5px] border-gray-300 bg-gray-200 px-28 py-3 font-sourceSansPro font-light text-gray-600">
+      <div className="flex w-full justify-between">
+        {/* Available lessons button */}
+        <button className="flex" onClick={handleOpen}>
+          <p className="font-bold tracking-wide text-gray-500">
+            Beschikbare lessen
+          </p>
+          <BsThreeDotsVertical className="text-xl" />
+        </button>
+        {/* Create new class button*/}
+        <button onClick={handleOpenCreateClass}>
+          <p>Les aanmaken</p>
+        </button>
       </div>
+
       <div>
         {!open ? null : (
           <ul className="absolute right-16 top-[152px] rounded-lg border  border-gray-300 bg-gray-200 last:pb-0">

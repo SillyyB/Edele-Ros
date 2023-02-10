@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     isAuthenticated && (
-      <main className="flex bg-gray-100 py-6 lg:px-28">
+      <main className="flex py-6 lg:px-28">
         <div className="flex grow items-center justify-between ">
           <Link to="home">
             <Logo />

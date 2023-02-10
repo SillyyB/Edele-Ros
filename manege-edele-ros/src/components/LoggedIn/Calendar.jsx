@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Lesson from "./Lesson";
 import { GiTeacher } from "react-icons/gi";
 import AvailableLessons from "./AvailableLessons";
 import CalendarNav from "./CalendarNav";
-import axios from "axios";
+import CreateNewClass from "./Lessons/CreateNewClass";
+import LessonDescriptionBar from "./Lessons/LessonDescriptionBar";
 
 const Calendar = () => {
+  const nextId = "";
+
   // state
-  const [name, setName] = useState("");
+  const [name, setName] = useState();
   const [isDisabled, setIsDisabled] = useState("");
   const [myLessons, setMyLessons] = useState([]);
   const toggleDisabledButton = () => setIsDisabled(!isDisabled);
@@ -44,21 +47,27 @@ const Calendar = () => {
     });
   };
 
-  const [post, setPost] = useState();
-
-  useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/posts/1").then((res) => {
-      setPost(res.data);
-    });
-  }, []);
-
   return (
     <div className="">
-      <CalendarNav />
+      {/* <CalendarNav /> */}
 
-      <div></div>
+      {/* Create new class button*/}
 
+      {/* <div className="border-b border-gray-400 bg-gray-300 pt-3">
+        <button onClick={handleOpenCreateClass}>
+          <p>Les aanmaken</p>
+        </button>
+      </div>
+      {!openCreateClass ? null : (
+        <div className="bg-gray-200">
+          <p>title</p>
+        </div>
+      )} */}
       <div>
+        <LessonDescriptionBar
+          title="Doe mee aan de les!"
+          description="Schrijf u in voor de les door op de `Doe mee` knop te klikken!"
+        />
         <table className="w-full table-auto font-sourceSansPro font-normal">
           <thead className="">
             <tr className="text-md border-b  uppercase  tracking-wide text-gray-600">
@@ -106,8 +115,16 @@ const Calendar = () => {
         </table>
       </div>
 
+      <LessonDescriptionBar
+        icon="FiUserCheck"
+        title="Uw lessen"
+        description="Schrijf u in voor de les door op de `Doe mee` knop te klikken!"
+      />
+
+      {/* <CreateNewClass /> */}
+
       {/* title */}
-      <div className="pt-80 ">
+      <div className="">
         <div>
           {/* lessons map over  */}
           <ul>
@@ -140,28 +157,7 @@ const Calendar = () => {
             ))}
           </ul>
         </div>
-
-        {/* create lesson */}
-        {/* <div>
-          <p>LessonTitle</p>
-          <p>date</p>
-          <p>teacher</p>
-          <input value={name} onChange={(e) => setName(e.target.value)} />
-          <button
-            onClick={() => {
-              setName("");
-              setAvailableLessons([
-                ...availableLessons,
-                { id: nextId++, name: name },
-              ]);
-            }}
-          >
-            Join Lesson
-          </button>
-        </div> */}
       </div>
-
-      {/* <Lesson /> */}
     </div>
   );
 };
